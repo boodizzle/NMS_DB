@@ -1,0 +1,68 @@
+require 'mysql2'
+
+SCHEDULER.every '5m', :first_in => 0 do |job|
+
+# Myql connection
+ db = Mysql2::Client.new(:host => "192.168.3.14", :username => "ignite", :password => "N3wp0rt!", :port => 3306, :database => "ignite" )
+
+  
+# Mysql query
+nmsJan = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-01%'"
+nmsFeb = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-02%'"
+nmsMar = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-03%'"
+nmsApr = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-04%'"
+nmsMay = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-05%'"
+nmsJun = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-06%'"
+nmsJul = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-07%'"
+nmsAug = "select CAST(SUM(deposit_amt)AS unsigned) AS total from deposit_balance where deposit_date like '%2015-08%'"
+
+# Execute the query
+resJan = db.query(nmsJan)
+resFeb = db.query(nmsFeb)
+resMar = db.query(nmsMar)
+resApr = db.query(nmsApr)
+resMay = db.query(nmsMay)
+resJun = db.query(nmsJun)
+resJul = db.query(nmsJul)
+resAug = db.query(nmsAug)
+
+  #get row results formated
+rowJan = resJan.first
+rowFeb = resFeb.first
+rowMar = resMar.first
+rowApr = resApr.first
+rowMay = resMay.first
+rowJun = resJun.first
+rowJul = resJul.first
+rowAug = resAug.first
+
+allResults = rowJan['total'], rowFeb['total'], rowMar['total'], rowApr['total'], rowMay['total'],rowJun['total'],rowJul['total'],rowAug['total']
+
+# Note: change this to obtain your chart data from some external source
+labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August']
+data = [
+  {
+    label: 'My First dataset',
+    fillColor: 'rgba(220,220,220,0.5)',
+    strokeColor: 'rgba(220,220,220,0.8)',
+    highlightFill: 'rgba(220,220,220,0.75)',
+    highlightStroke: 'rgba(220,220,220,1)',
+    data: Array.new(allResults)
+  },
+=begin
+   {
+    label: 'My Second dataset',
+    fillColor: 'rgba(151,187,205,0.5)',
+    strokeColor: 'rgba(151,187,205,0.8)',
+    highlightFill: 'rgba(151,187,205,0.75)',
+    highlightStroke: 'rgba(151,187,205,1)',
+    data: Array.new(labels.length) { rand(40..80) },
+  }
+=end  
+]
+options = { scaleFontColor: '#fff' }
+
+send_event('barchart', { labels: labels, datasets: data, options: options })
+send_event('linechart', { labels: labels, datasets: data, options: options })
+
+end

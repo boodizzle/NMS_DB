@@ -1,0 +1,23 @@
+require 'net/https'
+require 'uri'
+require "nokogiri"
+require 'JSON'
+ 
+
+SCHEDULER.every '20s', :first_in => 0 do |job|
+
+#results 1-50
+  uri1 = URI.parse("https://api.callpointe.com")
+  http1 = Net::HTTP.new(uri1.host, uri1.port)
+  http1.use_ssl = true
+  http1.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  req1 = Net::HTTP::Get.new("/v1/receiver")
+  req1.basic_auth("Authorization", "b3600501-cc74-45d5-b8de-4d06dae69bf9")
+  response1 = http1.request(req1)
+res1 = (response1.body)
+  doc1 = Nokogiri::XML(res1)
+  result1 = doc1.css
+  puts result1
+  puts doc1
+  puts res1
+end

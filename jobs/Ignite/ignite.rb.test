@@ -1,0 +1,28 @@
+	require 'mysql2'
+
+	SCHEDULER.every '1h', :first_in => 0 do |job|
+
+	# Myql connection
+	 db = Mysql2::Client.new(:host => "192.168.3.14", :username => "ignite", :password => "N3wp0rt!", :port => 3306, :database => "ignite" )
+
+	# Mysql query
+	nmsTotalSql = "select SUM(deposit_amt) AS total from deposit_balance where deposit_date like '%2015%'"
+	noiTotalSql = "select SUM(deposit_amt) AS total from deposit_balance where deposit_date like '%2015%' AND practiceID like '9999'"
+
+
+	# Execute the query
+	nms_results = db.query(nmsTotalSql)
+	noi_results = db.query(noiTotalSql)
+
+	#Row Retreival
+	nmsRowResults = nms_results.first
+	noiRowResults = noi_results.first
+
+
+  # Update the List widget -> send_event('data_id',{ current: your_row_result['your_query_'AS'_alias']})
+  send_event('deposit_Total', { current: nmsRowResults['total'] } )
+  send_event('noi_Total', { current: noiRowResults ['total'] } )
+
+
+
+end

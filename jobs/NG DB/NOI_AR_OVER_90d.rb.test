@@ -1,0 +1,44 @@
+require 'tiny_tds'
+
+SCHEDULER.every '300s', :first_in => 0 do |job|
+
+client = TinyTds::Client.new(:username => 'josorio',:password => 'givemesqlaccess',:host => '10.1.161.15',:database => 'NGProd',:port => '1433')
+sql= "
+SELECT        CONVERT(varchar(12), SUM(ISNULL(c.amt, 0)),1) AS total
+FROM            dbo.patient_encounter AS pe LEFT OUTER JOIN
+                         dbo.charges AS c ON pe.practice_id = c.practice_id AND pe.enc_id = c.source_id LEFT OUTER JOIN
+                             (SELECT        practice_id, practice_name
+                               FROM            dbo.practice) AS pal ON c.practice_id = pal.practice_id
+WHERE        (c.source_type = 'V') AND (pe.billable_ind = 'Y') AND (c.amt >= 0) AND (c.create_timestamp >= DATEADD(day, - 90, GETDATE()))
+"
+
+
+
+
+  # Execute the query
+  results = client.execute(sql)
+   puts results.first
+  ar = results.first
+  puts ar
+
+
+  send_event('NOI_Aging_90d', current:ar)
+end
+
+=begin
+FORMAT(cast(SUM(ISNULL(c.amt, 0))as bigint),'###,###,###.##') AS total
+ '$' + CONVERT(varchar(12), SUM(ISNULL(c.amt, 0)), 1) AS total
+
+'$'+FORMAT(SUM(ISNULL(c.amt, 0)), '###,###,###.##') AS total
+
+
+
+SELECT pal.practice_name as practice, '$'+FORMAT(SUM(ISNULL(c.amt, 0)), '###,###,###.##') AS total
+FROM dbo.patient_encounter pe 
+LEFT OUTER JOIN dbo.charges c 
+ON pe.practice_id = c.practice_id AND pe.enc_id = c.source_id
+LEFT OUTER JOIN (select practice_id, practice_name from practice) as pal
+ON c.practice_Id = pal.practice_Id
+WHERE (c.source_type = 'V') AND (pe.billable_ind = 'Y') AND c.amt >= 0AND c.create_timestamp >=  dateadd(day,-90,getdate())
+group by pal.practice_name
+=end

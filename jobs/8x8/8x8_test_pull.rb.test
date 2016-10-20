@@ -1,0 +1,1053 @@
+require 'Nokogiri'
+require 'uri'
+require 'net/https'
+
+SCHEDULER.every '60s', :first_in => 0 do |job|
+  uri = URI.parse("https://vcc-na10.8x8.com")
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+###################################Day Of####################################
+  rd0req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today")
+  rd0req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today&n=51")
+  rd0req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today&n=101")
+  rd0req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today&n=151")
+
+  rd0req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd0req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd0req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd0req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd0response1 = http.request(rd0req1)
+  rd0response2 = http.request(rd0req2)
+  rd0response3 = http.request(rd0req3)
+  rd0response4 = http.request(rd0req4)
+
+  rd0res1 = (rd0response1.body)
+  rd0res2 = (rd0response2.body)
+  rd0res3 = (rd0response3.body)
+  rd0res4 = (rd0response4.body)
+
+  rd0doc1 = Nokogiri::XML(rd0res1)
+  rd0doc2 = Nokogiri::XML(rd0res2)
+  rd0doc3 = Nokogiri::XML(rd0res3)
+  rd0doc4 = Nokogiri::XML(rd0res4)
+
+rd0cnt1 = rd0doc1.css('interaction-id').count
+rd0cnt2 = rd0doc2.css('interaction-id').count
+rd0cnt3 = rd0doc3.css('interaction-id').count
+rd0cnt4 = rd0doc4.css('interaction-id').count
+
+rd0res = rd0cnt1 + rd0cnt2 + rd0cnt3 + rd0cnt4
+###############################################################################
+####################################-1 Day#####################################
+  rd1req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-1d")
+  rd1req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-1d&n=51")
+  rd1req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-1d&n=101")
+  rd1req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-1d&n=151")
+
+  rd1req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd1req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd1req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd1req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd1response1 = http.request(rd1req1)
+  rd1response2 = http.request(rd1req2)
+  rd1response3 = http.request(rd1req3)
+  rd1response4 = http.request(rd1req4)
+
+  rd1res1 = (rd1response1.body)
+  rd1res2 = (rd1response2.body)
+  rd1res3 = (rd1response3.body)
+  rd1res4 = (rd1response4.body)
+
+  rd1doc1 = Nokogiri::XML(rd1res1)
+  rd1doc2 = Nokogiri::XML(rd1res2)
+  rd1doc3 = Nokogiri::XML(rd1res3)
+  rd1doc4 = Nokogiri::XML(rd1res4)
+
+rd1cnt1 = rd1doc1.css('interaction-id').count
+rd1cnt2 = rd1doc2.css('interaction-id').count
+rd1cnt3 = rd1doc3.css('interaction-id').count
+rd1cnt4 = rd1doc4.css('interaction-id').count
+
+rd1res = rd1cnt1 + rd1cnt2 + rd1cnt3 + rd1cnt4
+###############################################################################
+####################-2Day######################################################
+  rd2req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-2d")
+  rd2req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-2d&n=51")
+  rd2req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-2d&n=101")
+  rd2req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-2d&n=151")
+
+  rd2req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd2req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd2req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd2req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd2response1 = http.request(rd2req1)
+  rd2response2 = http.request(rd2req2)
+  rd2response3 = http.request(rd2req3)
+  rd2response4 = http.request(rd2req4)
+
+  rd2res1 = (rd2response1.body)
+  rd2res2 = (rd2response2.body)
+  rd2res3 = (rd2response3.body)
+  rd2res4 = (rd2response4.body)
+
+  rd2doc1 = Nokogiri::XML(rd2res1)
+  rd2doc2 = Nokogiri::XML(rd2res2)
+  rd2doc3 = Nokogiri::XML(rd2res3)
+  rd2doc4 = Nokogiri::XML(rd2res4)
+
+rd2cnt1 = rd2doc1.css('interaction-id').count
+rd2cnt2 = rd2doc2.css('interaction-id').count
+rd2cnt3 = rd2doc3.css('interaction-id').count
+rd2cnt4 = rd2doc4.css('interaction-id').count
+
+rd2res = rd2cnt1 + rd2cnt2 + rd2cnt3 + rd2cnt4
+###############################################################################
+######################-3day####################################################
+  rd3req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-3d")
+  rd3req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-3d&n=51")
+  rd3req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-3d&n=101")
+  rd3req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-3d&n=151")
+
+  rd3req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd3req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd3req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd3req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd3response1 = http.request(rd3req1)
+  rd3response2 = http.request(rd3req2)
+  rd3response3 = http.request(rd3req3)
+  rd3response4 = http.request(rd3req4)
+
+  rd3res1 = (rd3response1.body)
+  rd3res2 = (rd3response2.body)
+  rd3res3 = (rd3response3.body)
+  rd3res4 = (rd3response4.body)
+
+  rd3doc1 = Nokogiri::XML(rd3res1)
+  rd3doc2 = Nokogiri::XML(rd3res2)
+  rd3doc3 = Nokogiri::XML(rd3res3)
+  rd3doc4 = Nokogiri::XML(rd3res4)
+
+rd3cnt1 = rd3doc1.css('interaction-id').count
+rd3cnt2 = rd3doc2.css('interaction-id').count
+rd3cnt3 = rd3doc3.css('interaction-id').count
+rd3cnt4 = rd3doc4.css('interaction-id').count
+
+rd3res = rd3cnt1 + rd3cnt2 + rd3cnt3 + rd3cnt4
+##############################################################################
+#####################-4d######################################################
+  rd4req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-4d")
+  rd4req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-4d&n=51")
+  rd4req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-4d&n=101")
+  rd4req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-4d&n=151")
+
+  rd4req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd4req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd4req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd4req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd4response1 = http.request(rd4req1)
+  rd4response2 = http.request(rd4req2)
+  rd4response3 = http.request(rd4req3)
+  rd4response4 = http.request(rd4req4)
+
+  rd4res1 = (rd4response1.body)
+  rd4res2 = (rd4response2.body)
+  rd4res3 = (rd4response3.body)
+  rd4res4 = (rd4response4.body)
+
+  rd4doc1 = Nokogiri::XML(rd4res1)
+  rd4doc2 = Nokogiri::XML(rd4res2)
+  rd4doc3 = Nokogiri::XML(rd4res3)
+  rd4doc4 = Nokogiri::XML(rd4res4)
+
+rd4cnt1 = rd4doc1.css('interaction-id').count
+rd4cnt2 = rd4doc2.css('interaction-id').count
+rd4cnt3 = rd4doc3.css('interaction-id').count
+rd4cnt4 = rd4doc4.css('interaction-id').count
+
+rd4res = rd4cnt1 + rd4cnt2 + rd4cnt3 + rd4cnt4
+######################################################################################
+###############################-5d####################################################
+  rd5req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-5d")
+  rd5req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-5d&n=51")
+  rd5req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-5d&n=101")
+  rd5req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-5d&n=151")
+
+  rd5req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd5req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd5req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd5req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd5response1 = http.request(rd5req1)
+  rd5response2 = http.request(rd5req2)
+  rd5response3 = http.request(rd5req3)
+  rd5response4 = http.request(rd5req4)
+
+  rd5res1 = (rd5response1.body)
+  rd5res2 = (rd5response2.body)
+  rd5res3 = (rd5response3.body)
+  rd5res4 = (rd5response4.body)
+
+  rd5doc1 = Nokogiri::XML(rd5res1)
+  rd5doc2 = Nokogiri::XML(rd5res2)
+  rd5doc3 = Nokogiri::XML(rd5res3)
+  rd5doc4 = Nokogiri::XML(rd5res4)
+
+rd5cnt1 = rd5doc1.css('interaction-id').count
+rd5cnt2 = rd5doc2.css('interaction-id').count
+rd5cnt3 = rd5doc3.css('interaction-id').count
+rd5cnt4 = rd5doc4.css('interaction-id').count
+
+rd5res = rd5cnt1 + rd5cnt2 + rd5cnt3 + rd5cnt4
+#####################################################################################
+###############################-6d####################################################
+  rd6req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-6d")
+  rd6req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-6d&n=51")
+  rd6req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-6d&n=101")
+  rd6req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-6d&n=151")
+
+  rd6req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd6req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd6req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd6req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd6response1 = http.request(rd6req1)
+  rd6response2 = http.request(rd6req2)
+  rd6response3 = http.request(rd6req3)
+  rd6response4 = http.request(rd6req4)
+
+  rd6res1 = (rd6response1.body)
+  rd6res2 = (rd6response2.body)
+  rd6res3 = (rd6response3.body)
+  rd6res4 = (rd6response4.body)
+
+  rd6doc1 = Nokogiri::XML(rd6res1)
+  rd6doc2 = Nokogiri::XML(rd6res2)
+  rd6doc3 = Nokogiri::XML(rd6res3)
+  rd6doc4 = Nokogiri::XML(rd6res4)
+
+rd6cnt1 = rd6doc1.css('interaction-id').count
+rd6cnt2 = rd6doc2.css('interaction-id').count
+rd6cnt3 = rd6doc3.css('interaction-id').count
+rd6cnt4 = rd6doc4.css('interaction-id').count
+
+rd6res = rd6cnt1 + rd6cnt2 + rd6cnt3 + rd6cnt4
+#################################################################################
+###########################-7d###################################################
+  rd7req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-7d")
+  rd7req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-7d&n=51")
+  rd7req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-7d&n=101")
+  rd7req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-7d&n=151")
+
+  rd7req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd7req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd7req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd7req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd7response1 = http.request(rd7req1)
+  rd7response2 = http.request(rd7req2)
+  rd7response3 = http.request(rd7req3)
+  rd7response4 = http.request(rd7req4)
+
+  rd7res1 = (rd7response1.body)
+  rd7res2 = (rd7response2.body)
+  rd7res3 = (rd7response3.body)
+  rd7res4 = (rd7response4.body)
+
+  rd7doc1 = Nokogiri::XML(rd7res1)
+  rd7doc2 = Nokogiri::XML(rd7res2)
+  rd7doc3 = Nokogiri::XML(rd7res3)
+  rd7doc4 = Nokogiri::XML(rd7res4)
+
+rd7cnt1 = rd7doc1.css('interaction-id').count
+rd7cnt2 = rd7doc2.css('interaction-id').count
+rd7cnt3 = rd7doc3.css('interaction-id').count
+rd7cnt4 = rd7doc4.css('interaction-id').count
+
+rd7res = rd7cnt1 + rd7cnt2 + rd7cnt3 + rd7cnt4
+########################################################################################
+#############################-8d######################################################## 
+ rd8req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-8d")
+  rd8req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-8d&n=51")
+  rd8req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-8d&n=101")
+  rd8req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-8d&n=151")
+
+  rd8req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd8req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd8req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd8req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd8response1 = http.request(rd8req1)
+  rd8response2 = http.request(rd8req2)
+  rd8response3 = http.request(rd8req3)
+  rd8response4 = http.request(rd8req4)
+
+  rd8res1 = (rd8response1.body)
+  rd8res2 = (rd8response2.body)
+  rd8res3 = (rd8response3.body)
+  rd8res4 = (rd8response4.body)
+
+  rd8doc1 = Nokogiri::XML(rd8res1)
+  rd8doc2 = Nokogiri::XML(rd8res2)
+  rd8doc3 = Nokogiri::XML(rd8res3)
+  rd8doc4 = Nokogiri::XML(rd8res4)
+
+rd8cnt1 = rd8doc1.css('interaction-id').count
+rd8cnt2 = rd8doc2.css('interaction-id').count
+rd8cnt3 = rd8doc3.css('interaction-id').count
+rd8cnt4 = rd8doc4.css('interaction-id').count
+
+rd8res = rd8cnt1 + rd8cnt2 + rd8cnt3 + rd8cnt4
+########################################################################################
+#############################-9d######################################################## 
+ rd9req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-9d")
+  rd9req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-9d&n=51")
+  rd9req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-9d&n=101")
+  rd9req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-9d&n=151")
+
+  rd9req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd9req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd9req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd9req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd9response1 = http.request(rd9req1)
+  rd9response2 = http.request(rd9req2)
+  rd9response3 = http.request(rd9req3)
+  rd9response4 = http.request(rd9req4)
+
+  rd9res1 = (rd9response1.body)
+  rd9res2 = (rd9response2.body)
+  rd9res3 = (rd9response3.body)
+  rd9res4 = (rd9response4.body)
+
+  rd9doc1 = Nokogiri::XML(rd9res1)
+  rd9doc2 = Nokogiri::XML(rd9res2)
+  rd9doc3 = Nokogiri::XML(rd9res3)
+  rd9doc4 = Nokogiri::XML(rd9res4)
+
+rd9cnt1 = rd9doc1.css('interaction-id').count
+rd9cnt2 = rd9doc2.css('interaction-id').count
+rd9cnt3 = rd9doc3.css('interaction-id').count
+rd9cnt4 = rd9doc4.css('interaction-id').count
+
+rd9res = rd9cnt1 + rd9cnt2 + rd9cnt3 + rd9cnt4
+########################################################################################
+#############################-10d######################################################## 
+ rd10req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-10d")
+  rd10req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-10d&n=51")
+  rd10req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-10d&n=101")
+  rd10req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-10d&n=151")
+
+  rd10req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd10req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd10req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd10req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd10response1 = http.request(rd10req1)
+  rd10response2 = http.request(rd10req2)
+  rd10response3 = http.request(rd10req3)
+  rd10response4 = http.request(rd10req4)
+
+  rd10res1 = (rd10response1.body)
+  rd10res2 = (rd10response2.body)
+  rd10res3 = (rd10response3.body)
+  rd10res4 = (rd10response4.body)
+
+  rd10doc1 = Nokogiri::XML(rd10res1)
+  rd10doc2 = Nokogiri::XML(rd10res2)
+  rd10doc3 = Nokogiri::XML(rd10res3)
+  rd10doc4 = Nokogiri::XML(rd10res4)
+
+rd10cnt1 = rd10doc1.css('interaction-id').count
+rd10cnt2 = rd10doc2.css('interaction-id').count
+rd10cnt3 = rd10doc3.css('interaction-id').count
+rd10cnt4 = rd10doc4.css('interaction-id').count
+
+rd10res = rd10cnt1 + rd10cnt2 + rd10cnt3 + rd10cnt4
+########################################################################################
+#############################-11d######################################################## 
+ rd11req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-11d")
+  rd11req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-11d&n=51")
+  rd11req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-11d&n=101")
+  rd11req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-11d&n=151")
+
+  rd11req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd11req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd11req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd11req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd11response1 = http.request(rd11req1)
+  rd11response2 = http.request(rd11req2)
+  rd11response3 = http.request(rd11req3)
+  rd11response4 = http.request(rd11req4)
+
+  rd11res1 = (rd11response1.body)
+  rd11res2 = (rd11response2.body)
+  rd11res3 = (rd11response3.body)
+  rd11res4 = (rd11response4.body)
+
+  rd11doc1 = Nokogiri::XML(rd11res1)
+  rd11doc2 = Nokogiri::XML(rd11res2)
+  rd11doc3 = Nokogiri::XML(rd11res3)
+  rd11doc4 = Nokogiri::XML(rd11res4)
+
+rd11cnt1 = rd11doc1.css('interaction-id').count
+rd11cnt2 = rd11doc2.css('interaction-id').count
+rd11cnt3 = rd11doc3.css('interaction-id').count
+rd11cnt4 = rd11doc4.css('interaction-id').count
+
+rd11res = rd11cnt1 + rd11cnt2 + rd11cnt3 + rd11cnt4
+########################################################################################
+#############################-12d######################################################## 
+ rd12req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-12d")
+  rd12req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-12d&n=51")
+  rd12req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-12d&n=101")
+  rd12req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-12d&n=151")
+
+  rd12req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd12req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd12req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd12req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd12response1 = http.request(rd12req1)
+  rd12response2 = http.request(rd12req2)
+  rd12response3 = http.request(rd12req3)
+  rd12response4 = http.request(rd12req4)
+
+  rd12res1 = (rd12response1.body)
+  rd12res2 = (rd12response2.body)
+  rd12res3 = (rd12response3.body)
+  rd12res4 = (rd12response4.body)
+
+  rd12doc1 = Nokogiri::XML(rd12res1)
+  rd12doc2 = Nokogiri::XML(rd12res2)
+  rd12doc3 = Nokogiri::XML(rd12res3)
+  rd12doc4 = Nokogiri::XML(rd12res4)
+
+rd12cnt1 = rd12doc1.css('interaction-id').count
+rd12cnt2 = rd12doc2.css('interaction-id').count
+rd12cnt3 = rd12doc3.css('interaction-id').count
+rd12cnt4 = rd12doc4.css('interaction-id').count
+
+rd12res = rd12cnt1 + rd12cnt2 + rd12cnt3 + rd12cnt4
+########################################################################################
+#############################-13d######################################################## 
+ rd13req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-13d")
+  rd13req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-13d&n=51")
+  rd13req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-13d&n=101")
+  rd13req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-13d&n=151")
+
+  rd13req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd13req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd13req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd13req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd13response1 = http.request(rd13req1)
+  rd13response2 = http.request(rd13req2)
+  rd13response3 = http.request(rd13req3)
+  rd13response4 = http.request(rd13req4)
+
+  rd13res1 = (rd13response1.body)
+  rd13res2 = (rd13response2.body)
+  rd13res3 = (rd13response3.body)
+  rd13res4 = (rd13response4.body)
+
+  rd13doc1 = Nokogiri::XML(rd13res1)
+  rd13doc2 = Nokogiri::XML(rd13res2)
+  rd13doc3 = Nokogiri::XML(rd13res3)
+  rd13doc4 = Nokogiri::XML(rd13res4)
+
+rd13cnt1 = rd13doc1.css('interaction-id').count
+rd13cnt2 = rd13doc2.css('interaction-id').count
+rd13cnt3 = rd13doc3.css('interaction-id').count
+rd13cnt4 = rd13doc4.css('interaction-id').count
+
+rd13res = rd13cnt1 + rd13cnt2 + rd13cnt3 + rd13cnt4
+########################################################################################
+#############################-14d######################################################## 
+ rd14req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-14d")
+  rd14req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-14d&n=51")
+  rd14req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-14d&n=101")
+  rd14req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-14d&n=151")
+
+  rd14req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd14req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd14req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd14req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd14response1 = http.request(rd14req1)
+  rd14response2 = http.request(rd14req2)
+  rd14response3 = http.request(rd14req3)
+  rd14response4 = http.request(rd14req4)
+
+  rd14res1 = (rd14response1.body)
+  rd14res2 = (rd14response2.body)
+  rd14res3 = (rd14response3.body)
+  rd14res4 = (rd14response4.body)
+
+  rd14doc1 = Nokogiri::XML(rd14res1)
+  rd14doc2 = Nokogiri::XML(rd14res2)
+  rd14doc3 = Nokogiri::XML(rd14res3)
+  rd14doc4 = Nokogiri::XML(rd14res4)
+
+rd14cnt1 = rd14doc1.css('interaction-id').count
+rd14cnt2 = rd14doc2.css('interaction-id').count
+rd14cnt3 = rd14doc3.css('interaction-id').count
+rd14cnt4 = rd14doc4.css('interaction-id').count
+
+rd14res = rd14cnt1 + rd14cnt2 + rd14cnt3 + rd14cnt4
+########################################################################################
+#############################-15d######################################################## 
+ rd15req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-15d")
+  rd15req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-15d&n=51")
+  rd15req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-15d&n=101")
+  rd15req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-15d&n=151")
+
+  rd15req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd15req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd15req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd15req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd15response1 = http.request(rd15req1)
+  rd15response2 = http.request(rd15req2)
+  rd15response3 = http.request(rd15req3)
+  rd15response4 = http.request(rd15req4)
+
+  rd15res1 = (rd15response1.body)
+  rd15res2 = (rd15response2.body)
+  rd15res3 = (rd15response3.body)
+  rd15res4 = (rd15response4.body)
+
+  rd15doc1 = Nokogiri::XML(rd15res1)
+  rd15doc2 = Nokogiri::XML(rd15res2)
+  rd15doc3 = Nokogiri::XML(rd15res3)
+  rd15doc4 = Nokogiri::XML(rd15res4)
+
+rd15cnt1 = rd15doc1.css('interaction-id').count
+rd15cnt2 = rd15doc2.css('interaction-id').count
+rd15cnt3 = rd15doc3.css('interaction-id').count
+rd15cnt4 = rd15doc4.css('interaction-id').count
+
+rd15res = rd15cnt1 + rd15cnt2 + rd15cnt3 + rd15cnt4
+########################################################################################
+#############################-16d######################################################## 
+ rd16req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-16d")
+  rd16req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-16d&n=51")
+  rd16req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-16d&n=101")
+  rd16req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-16d&n=151")
+
+  rd16req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd16req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd16req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd16req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd16response1 = http.request(rd16req1)
+  rd16response2 = http.request(rd16req2)
+  rd16response3 = http.request(rd16req3)
+  rd16response4 = http.request(rd16req4)
+
+  rd16res1 = (rd16response1.body)
+  rd16res2 = (rd16response2.body)
+  rd16res3 = (rd16response3.body)
+  rd16res4 = (rd16response4.body)
+
+  rd16doc1 = Nokogiri::XML(rd16res1)
+  rd16doc2 = Nokogiri::XML(rd16res2)
+  rd16doc3 = Nokogiri::XML(rd16res3)
+  rd16doc4 = Nokogiri::XML(rd16res4)
+
+rd16cnt1 = rd16doc1.css('interaction-id').count
+rd16cnt2 = rd16doc2.css('interaction-id').count
+rd16cnt3 = rd16doc3.css('interaction-id').count
+rd16cnt4 = rd16doc4.css('interaction-id').count
+
+rd16res = rd16cnt1 + rd16cnt2 + rd16cnt3 + rd16cnt4
+########################################################################################
+#############################-17d######################################################## 
+ rd17req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-17d")
+  rd17req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-17d&n=51")
+  rd17req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-17d&n=101")
+  rd17req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-17d&n=151")
+
+  rd17req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd17req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd17req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd17req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd17response1 = http.request(rd17req1)
+  rd17response2 = http.request(rd17req2)
+  rd17response3 = http.request(rd17req3)
+  rd17response4 = http.request(rd17req4)
+
+  rd17res1 = (rd17response1.body)
+  rd17res2 = (rd17response2.body)
+  rd17res3 = (rd17response3.body)
+  rd17res4 = (rd17response4.body)
+
+  rd17doc1 = Nokogiri::XML(rd17res1)
+  rd17doc2 = Nokogiri::XML(rd17res2)
+  rd17doc3 = Nokogiri::XML(rd17res3)
+  rd17doc4 = Nokogiri::XML(rd17res4)
+
+rd17cnt1 = rd17doc1.css('interaction-id').count
+rd17cnt2 = rd17doc2.css('interaction-id').count
+rd17cnt3 = rd17doc3.css('interaction-id').count
+rd17cnt4 = rd17doc4.css('interaction-id').count
+
+rd17res = rd17cnt1 + rd17cnt2 + rd17cnt3 + rd17cnt4
+########################################################################################
+#############################-18d######################################################## 
+ rd18req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-18d")
+  rd18req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-18d&n=51")
+  rd18req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-18d&n=101")
+  rd18req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-18d&n=151")
+
+  rd18req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd18req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd18req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd18req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd18response1 = http.request(rd18req1)
+  rd18response2 = http.request(rd18req2)
+  rd18response3 = http.request(rd18req3)
+  rd18response4 = http.request(rd18req4)
+
+  rd18res1 = (rd18response1.body)
+  rd18res2 = (rd18response2.body)
+  rd18res3 = (rd18response3.body)
+  rd18res4 = (rd18response4.body)
+
+  rd18doc1 = Nokogiri::XML(rd18res1)
+  rd18doc2 = Nokogiri::XML(rd18res2)
+  rd18doc3 = Nokogiri::XML(rd18res3)
+  rd18doc4 = Nokogiri::XML(rd18res4)
+
+rd18cnt1 = rd18doc1.css('interaction-id').count
+rd18cnt2 = rd18doc2.css('interaction-id').count
+rd18cnt3 = rd18doc3.css('interaction-id').count
+rd18cnt4 = rd18doc4.css('interaction-id').count
+
+rd18res = rd18cnt1 + rd18cnt2 + rd18cnt3 + rd18cnt4
+########################################################################################
+#############################-19d######################################################## 
+ rd19req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-19d")
+  rd19req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-19d&n=51")
+  rd19req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-19d&n=101")
+  rd19req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-19d&n=151")
+
+  rd19req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd19req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd19req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd19req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd19response1 = http.request(rd19req1)
+  rd19response2 = http.request(rd19req2)
+  rd19response3 = http.request(rd19req3)
+  rd19response4 = http.request(rd19req4)
+
+  rd19res1 = (rd19response1.body)
+  rd19res2 = (rd19response2.body)
+  rd19res3 = (rd19response3.body)
+  rd19res4 = (rd19response4.body)
+
+  rd19doc1 = Nokogiri::XML(rd19res1)
+  rd19doc2 = Nokogiri::XML(rd19res2)
+  rd19doc3 = Nokogiri::XML(rd19res3)
+  rd19doc4 = Nokogiri::XML(rd19res4)
+
+rd19cnt1 = rd19doc1.css('interaction-id').count
+rd19cnt2 = rd19doc2.css('interaction-id').count
+rd19cnt3 = rd19doc3.css('interaction-id').count
+rd19cnt4 = rd19doc4.css('interaction-id').count
+
+rd19res = rd19cnt1 + rd19cnt2 + rd19cnt3 + rd19cnt4
+########################################################################################
+#############################-20d######################################################## 
+ rd20req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-20d")
+  rd20req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-20d&n=51")
+  rd20req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-20d&n=101")
+  rd20req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-20d&n=151")
+
+  rd20req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd20req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd20req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd20req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd20response1 = http.request(rd20req1)
+  rd20response2 = http.request(rd20req2)
+  rd20response3 = http.request(rd20req3)
+  rd20response4 = http.request(rd20req4)
+
+  rd20res1 = (rd20response1.body)
+  rd20res2 = (rd20response2.body)
+  rd20res3 = (rd20response3.body)
+  rd20res4 = (rd20response4.body)
+
+  rd20doc1 = Nokogiri::XML(rd20res1)
+  rd20doc2 = Nokogiri::XML(rd20res2)
+  rd20doc3 = Nokogiri::XML(rd20res3)
+  rd20doc4 = Nokogiri::XML(rd20res4)
+
+rd20cnt1 = rd20doc1.css('interaction-id').count
+rd20cnt2 = rd20doc2.css('interaction-id').count
+rd20cnt3 = rd20doc3.css('interaction-id').count
+rd20cnt4 = rd20doc4.css('interaction-id').count
+
+rd20res = rd20cnt1 + rd20cnt2 + rd20cnt3 + rd20cnt4
+########################################################################################
+#############################-21d######################################################## 
+ rd21req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-21d")
+  rd21req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-21d&n=51")
+  rd21req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-21d&n=101")
+  rd21req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-21d&n=151")
+
+  rd21req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd21req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd21req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd21req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd21response1 = http.request(rd21req1)
+  rd21response2 = http.request(rd21req2)
+  rd21response3 = http.request(rd21req3)
+  rd21response4 = http.request(rd21req4)
+
+  rd21res1 = (rd21response1.body)
+  rd21res2 = (rd21response2.body)
+  rd21res3 = (rd21response3.body)
+  rd21res4 = (rd21response4.body)
+
+  rd21doc1 = Nokogiri::XML(rd21res1)
+  rd21doc2 = Nokogiri::XML(rd21res2)
+  rd21doc3 = Nokogiri::XML(rd21res3)
+  rd21doc4 = Nokogiri::XML(rd21res4)
+
+rd21cnt1 = rd21doc1.css('interaction-id').count
+rd21cnt2 = rd21doc2.css('interaction-id').count
+rd21cnt3 = rd21doc3.css('interaction-id').count
+rd21cnt4 = rd21doc4.css('interaction-id').count
+
+rd21res = rd21cnt1 + rd21cnt2 + rd21cnt3 + rd21cnt4
+########################################################################################
+#############################-22d######################################################## 
+ rd22req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-22d")
+  rd22req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-22d&n=51")
+  rd22req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-22d&n=101")
+  rd22req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-22d&n=151")
+
+  rd22req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd22req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd22req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd22req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd22response1 = http.request(rd22req1)
+  rd22response2 = http.request(rd22req2)
+  rd22response3 = http.request(rd22req3)
+  rd22response4 = http.request(rd22req4)
+
+  rd22res1 = (rd22response1.body)
+  rd22res2 = (rd22response2.body)
+  rd22res3 = (rd22response3.body)
+  rd22res4 = (rd22response4.body)
+
+  rd22doc1 = Nokogiri::XML(rd22res1)
+  rd22doc2 = Nokogiri::XML(rd22res2)
+  rd22doc3 = Nokogiri::XML(rd22res3)
+  rd22doc4 = Nokogiri::XML(rd22res4)
+
+rd22cnt1 = rd22doc1.css('interaction-id').count
+rd22cnt2 = rd22doc2.css('interaction-id').count
+rd22cnt3 = rd22doc3.css('interaction-id').count
+rd22cnt4 = rd22doc4.css('interaction-id').count
+
+rd22res = rd22cnt1 + rd22cnt2 + rd22cnt3 + rd22cnt4
+########################################################################################
+#############################-23d######################################################## 
+ rd23req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-23d")
+  rd23req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-23d&n=51")
+  rd23req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-23d&n=101")
+  rd23req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-23d&n=151")
+
+  rd23req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd23req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd23req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd23req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd23response1 = http.request(rd23req1)
+  rd23response2 = http.request(rd23req2)
+  rd23response3 = http.request(rd23req3)
+  rd23response4 = http.request(rd23req4)
+
+  rd23res1 = (rd23response1.body)
+  rd23res2 = (rd23response2.body)
+  rd23res3 = (rd23response3.body)
+  rd23res4 = (rd23response4.body)
+
+  rd23doc1 = Nokogiri::XML(rd23res1)
+  rd23doc2 = Nokogiri::XML(rd23res2)
+  rd23doc3 = Nokogiri::XML(rd23res3)
+  rd23doc4 = Nokogiri::XML(rd23res4)
+
+rd23cnt1 = rd23doc1.css('interaction-id').count
+rd23cnt2 = rd23doc2.css('interaction-id').count
+rd23cnt3 = rd23doc3.css('interaction-id').count
+rd23cnt4 = rd23doc4.css('interaction-id').count
+
+rd23res = rd23cnt1 + rd23cnt2 + rd23cnt3 + rd23cnt4
+########################################################################################
+#############################-24d######################################################## 
+ rd24req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-24d")
+  rd24req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-24d&n=51")
+  rd24req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-24d&n=101")
+  rd24req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-24d&n=151")
+
+  rd24req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd24req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd24req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd24req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd24response1 = http.request(rd24req1)
+  rd24response2 = http.request(rd24req2)
+  rd24response3 = http.request(rd24req3)
+  rd24response4 = http.request(rd24req4)
+
+  rd24res1 = (rd24response1.body)
+  rd24res2 = (rd24response2.body)
+  rd24res3 = (rd24response3.body)
+  rd24res4 = (rd24response4.body)
+
+  rd24doc1 = Nokogiri::XML(rd24res1)
+  rd24doc2 = Nokogiri::XML(rd24res2)
+  rd24doc3 = Nokogiri::XML(rd24res3)
+  rd24doc4 = Nokogiri::XML(rd24res4)
+
+rd24cnt1 = rd24doc1.css('interaction-id').count
+rd24cnt2 = rd24doc2.css('interaction-id').count
+rd24cnt3 = rd24doc3.css('interaction-id').count
+rd24cnt4 = rd24doc4.css('interaction-id').count
+
+rd24res = rd24cnt1 + rd24cnt2 + rd24cnt3 + rd24cnt4
+########################################################################################
+#############################-25d######################################################## 
+ rd25req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-25d")
+  rd25req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-25d&n=51")
+  rd25req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-25d&n=101")
+  rd25req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-25d&n=151")
+
+  rd25req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd25req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd25req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd25req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd25response1 = http.request(rd25req1)
+  rd25response2 = http.request(rd25req2)
+  rd25response3 = http.request(rd25req3)
+  rd25response4 = http.request(rd25req4)
+
+  rd25res1 = (rd25response1.body)
+  rd25res2 = (rd25response2.body)
+  rd25res3 = (rd25response3.body)
+  rd25res4 = (rd25response4.body)
+
+  rd25doc1 = Nokogiri::XML(rd25res1)
+  rd25doc2 = Nokogiri::XML(rd25res2)
+  rd25doc3 = Nokogiri::XML(rd25res3)
+  rd25doc4 = Nokogiri::XML(rd25res4)
+
+rd25cnt1 = rd25doc1.css('interaction-id').count
+rd25cnt2 = rd25doc2.css('interaction-id').count
+rd25cnt3 = rd25doc3.css('interaction-id').count
+rd25cnt4 = rd25doc4.css('interaction-id').count
+
+rd25res = rd25cnt1 + rd25cnt2 + rd25cnt3 + rd25cnt4
+########################################################################################
+#############################-26d######################################################## 
+ rd26req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-26d")
+  rd26req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-26d&n=51")
+  rd26req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-26d&n=101")
+  rd26req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-26d&n=151")
+
+  rd26req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd26req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd26req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd26req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd26response1 = http.request(rd26req1)
+  rd26response2 = http.request(rd26req2)
+  rd26response3 = http.request(rd26req3)
+  rd26response4 = http.request(rd26req4)
+
+  rd26res1 = (rd26response1.body)
+  rd26res2 = (rd26response2.body)
+  rd26res3 = (rd26response3.body)
+  rd26res4 = (rd26response4.body)
+
+  rd26doc1 = Nokogiri::XML(rd26res1)
+  rd26doc2 = Nokogiri::XML(rd26res2)
+  rd26doc3 = Nokogiri::XML(rd26res3)
+  rd26doc4 = Nokogiri::XML(rd26res4)
+
+rd26cnt1 = rd26doc1.css('interaction-id').count
+rd26cnt2 = rd26doc2.css('interaction-id').count
+rd26cnt3 = rd26doc3.css('interaction-id').count
+rd26cnt4 = rd26doc4.css('interaction-id').count
+
+rd26res = rd26cnt1 + rd26cnt2 + rd26cnt3 + rd26cnt4
+########################################################################################
+#############################-27d######################################################## 
+ rd27req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-27d")
+  rd27req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-27d&n=51")
+  rd27req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-27d&n=101")
+  rd27req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-27d&n=151")
+
+  rd27req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd27req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd27req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd27req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd27response1 = http.request(rd27req1)
+  rd27response2 = http.request(rd27req2)
+  rd27response3 = http.request(rd27req3)
+  rd27response4 = http.request(rd27req4)
+
+  rd27res1 = (rd27response1.body)
+  rd27res2 = (rd27response2.body)
+  rd27res3 = (rd27response3.body)
+  rd27res4 = (rd27response4.body)
+
+  rd27doc1 = Nokogiri::XML(rd27res1)
+  rd27doc2 = Nokogiri::XML(rd27res2)
+  rd27doc3 = Nokogiri::XML(rd27res3)
+  rd27doc4 = Nokogiri::XML(rd27res4)
+
+rd27cnt1 = rd27doc1.css('interaction-id').count
+rd27cnt2 = rd27doc2.css('interaction-id').count
+rd27cnt3 = rd27doc3.css('interaction-id').count
+rd27cnt4 = rd27doc4.css('interaction-id').count
+
+rd27res = rd27cnt1 + rd27cnt2 + rd27cnt3 + rd27cnt4
+########################################################################################
+#############################-28d######################################################## 
+ rd28req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-28d")
+  rd28req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-28d&n=51")
+  rd28req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-28d&n=101")
+  rd28req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-28d&n=151")
+
+  rd28req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd28req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd28req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd28req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd28response1 = http.request(rd28req1)
+  rd28response2 = http.request(rd28req2)
+  rd28response3 = http.request(rd28req3)
+  rd28response4 = http.request(rd28req4)
+
+  rd28res1 = (rd28response1.body)
+  rd28res2 = (rd28response2.body)
+  rd28res3 = (rd28response3.body)
+  rd28res4 = (rd28response4.body)
+
+  rd28doc1 = Nokogiri::XML(rd28res1)
+  rd28doc2 = Nokogiri::XML(rd28res2)
+  rd28doc3 = Nokogiri::XML(rd28res3)
+  rd28doc4 = Nokogiri::XML(rd28res4)
+
+rd28cnt1 = rd28doc1.css('interaction-id').count
+rd28cnt2 = rd28doc2.css('interaction-id').count
+rd28cnt3 = rd28doc3.css('interaction-id').count
+rd28cnt4 = rd28doc4.css('interaction-id').count
+
+rd28res = rd28cnt1 + rd28cnt2 + rd28cnt3 + rd28cnt4
+########################################################################################
+#############################-29d######################################################## 
+ rd29req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-29d")
+  rd29req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-29d&n=51")
+  rd29req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-29d&n=101")
+  rd29req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-29d&n=151")
+
+  rd29req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd29req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd29req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd29req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd29response1 = http.request(rd29req1)
+  rd29response2 = http.request(rd29req2)
+  rd29response3 = http.request(rd29req3)
+  rd29response4 = http.request(rd29req4)
+
+  rd29res1 = (rd29response1.body)
+  rd29res2 = (rd29response2.body)
+  rd29res3 = (rd29response3.body)
+  rd29res4 = (rd29response4.body)
+
+  rd29doc1 = Nokogiri::XML(rd29res1)
+  rd29doc2 = Nokogiri::XML(rd29res2)
+  rd29doc3 = Nokogiri::XML(rd29res3)
+  rd29doc4 = Nokogiri::XML(rd29res4)
+
+rd29cnt1 = rd29doc1.css('interaction-id').count
+rd29cnt2 = rd29doc2.css('interaction-id').count
+rd29cnt3 = rd29doc3.css('interaction-id').count
+rd29cnt4 = rd29doc4.css('interaction-id').count
+
+rd29res = rd29cnt1 + rd29cnt2 + rd29cnt3 + rd29cnt4
+########################################################################################
+#############################-30d######################################################## 
+ rd30req1 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-30d")
+  rd30req2 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-30d&n=51")
+  rd30req3 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-30d&n=101")
+  rd30req4 = Net::HTTP::Get.new("/api/stats/queues/105/interactions?d=today-30d&n=151")
+
+  rd30req1.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd30req2.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd30req3.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+  rd30req4.basic_auth("newportmedsolutions", "2c0b8d15471087b9a378c41d6aad4044")
+
+  rd30response1 = http.request(rd30req1)
+  rd30response2 = http.request(rd30req2)
+  rd30response3 = http.request(rd30req3)
+  rd30response4 = http.request(rd30req4)
+
+  rd30res1 = (rd30response1.body)
+  rd30res2 = (rd30response2.body)
+  rd30res3 = (rd30response3.body)
+  rd30res4 = (rd30response4.body)
+
+  rd30doc1 = Nokogiri::XML(rd30res1)
+  rd30doc2 = Nokogiri::XML(rd30res2)
+  rd30doc3 = Nokogiri::XML(rd30res3)
+  rd30doc4 = Nokogiri::XML(rd30res4)
+
+rd30cnt1 = rd30doc1.css('interaction-id').count
+rd30cnt2 = rd30doc2.css('interaction-id').count
+rd30cnt3 = rd30doc3.css('interaction-id').count
+rd30cnt4 = rd30doc4.css('interaction-id').count
+
+rd30res = rd30cnt1 + rd30cnt2 + rd30cnt3 + rd30cnt4
+##############################################################################################################
+
+f10res = rd1res + rd2res +rd3res+rd4res+rd5res+rd6res+rd7res+rd8res+rd9res+rd10res
+s10res = rd11res + rd12res +rd13res+rd14res+rd15res+rd16res+rd17res+rd18res+rd19res+rd20res
+t10res = rd21res + rd22res +rd23res+rd24res+rd25res+rd26res+rd27res+rd28res+rd29res+rd30res
+callTotal = f10res + s10res + t10res
+
+taco = rd1res,rd2res,rd3res,rd4res,rd5res,rd6res,rd7res,rd8res,rd9res,rd10res,rd11res,rd12res,rd13res,rd14res,rd15res,rd16res,rd17res,rd18res,rd19res,rd20res,rd21res,rd22res,rd23res,rd24res,rd25res,rd26res,rd27res,rd28res,rd29res,rd30res
+
+dcount = 30
+
+taco.each do |me|
+  if me <= 0 then dcount = dcount - 1
+  end
+end
+
+avg30D = callTotal/dcount
+
+
+
+end

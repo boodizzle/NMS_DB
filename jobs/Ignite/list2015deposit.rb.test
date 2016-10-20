@@ -1,0 +1,43 @@
+require 'mysql2'
+
+SCHEDULER.every '24h', :first_in => 0 do |job|
+
+# Myql connection
+ db = Mysql2::Client.new(:host => "192.168.3.14", :username => "ignite", :password => "N3wp0rt!", :port => 3306, :database => "ignite" )
+
+# Mysql query
+sql = "
+select practice_main.shortName AS practice, 
+CAST(SUM(deposit_balance.deposit_Amt)as unsigned) AS total
+from deposit_balance, practice_main 
+where practice_main.practiceID = deposit_balance.practiceID
+AND deposit_balance.deposit_date like '%2015%'
+group by practice_main.practiceID
+order by SUM(deposit_balance.deposit_Amt) DESC
+limit 0,5
+"
+
+results = db.query(sql)
+
+
+# Execute the query
+#nms_results = db.query(nmsTotalSql)
+
+#Row Retreival
+#nmsRowResults = nms_results.first
+
+# Sending to List widget, so map to :label and :value
+  acctitems = results.map do |row|
+    row = {
+      :label => row['practice'],
+      :value => row['total']
+    }
+  end
+
+
+  # Update the List widget -> send_event('data_id',{ current: your_row_result['your_query_'AS'_alias']})
+  send_event('list2015deposit', { items:acctitems } )
+   # send_event('sql_list', { items:acctitems } )
+
+
+end

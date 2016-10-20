@@ -1,0 +1,40 @@
+<script type='text/javascript'>
+ $(function() {
+   Dashing.gridsterLayout('[{"col":1,"row":1,"size_x":1,"size_y":2},{"col":3,"row":1,"size_x":1,"size_y":1},{"col":4,"row":1,"size_x":1,"size_y":1},{"col":2,"row":1,"size_x":1,"size_y":1},{"col":2,"row":2,"size_x":1,"size_y":1},{"col":3,"row":2,"size_x":2,"size_y":1}]')
+ });
+ </script>
+
+<% content_for :title do %>Patient Rep Dashboard<% end %>
+<script src="Chart.js"></script>
+
+
+<div class="gridster">
+<ul>
+  <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
+      <div data-id="Aging_AR_INS_COL" data-view="List" data-unordered="true" data-title="Aging AR Over 90" data-moreinfo="Aging AR"></div>
+    </li>
+
+ <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="icTasks" data-view="List" data-unordered="true" data-title="Tasks Worked" data-moreinfo="Tasks"></div>
+    </li>
+ 
+ <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="8x8_Agent_Status" data-view="List" data-unordered="true" data-title="Agent Status" data-moreinfo="Updated Every 10s"></div>
+    </li>   
+
+ <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="8x8_Calls_Today" data-view="Number" data-title="Calls Today" data-moreinfo="Inbound + Outbound"></div>
+    </li>
+
+    
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="8x8_que_stats" data-view="List" data-unordered="true" data-title="Call Stats" data-moreinfo="In Seconds"></div>
+    </li>
+
+  
+<li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+  <div data-id="8x8_Line_chart_hour" data-view ="LineChart" data-title="Calls/Hour" data-moreinfo="Blue = INbound , White = OUTbound , Red = Abandoned"></div>
+</li>      
+    
+  </ul>
+</div>
